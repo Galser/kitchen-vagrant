@@ -89,7 +89,72 @@ Installing kitchen-vagrant 1.6.0
 Bundle complete! 4 Gemfile dependencies, 107 gems now installed.
 Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```
+- In order to test we need to have Vagrant Box with Ngxinx created and eveyrthing that reuiqred provisioned, to do so execute : 
+```
+make
+```
 
+# How to test
+
+- Prepare box (runt the VM):
+    ```
+    bundle exec kitchen converge
+    ```
+    Output going to start with :
+    ```
+    -----> Starting Kitchen (v2.3.3)
+    -----> Creating <default-bionic-nginx64>...
+        Bringing machine 'default' up with 'virtualbox' provider...
+        ==> default: Importing base box 'bionic-nginx64'...
+    ```
+    And in case of successful run the last 2 lines f output should be : 
+    ```
+        Finished converging <default-bionic-nginx64> (0m0.01s).
+    -----> Kitchen is finished. (0m36.66s)
+    ```
+- Now to run the test : 
+    ```
+    bundle exec kitchen verify
+    ```
+    Output should looks like ths : 
+    ```
+    -----> Starting Kitchen (v2.3.3)
+    -----> Setting up <default-bionic-nginx64-vbox>...
+        Finished setting up <default-bionic-nginx64-vbox> (0m0.00s).
+    -----> Verifying <default-bionic-nginx64-vbox>...
+    verify_host_key: false is deprecated, use :never
+        Loaded tests from {:path=>"....kitchen-vagrant.test.integration.default"} 
+
+    Profile: tests from {:path=>"/.../kitchen-vagrant/test/integration/default"} (tests from {:path=>"....kitchen-vagrant.test.integration.default"})
+    Version: (not specified)
+    Target:  ssh://vagrant@127.0.0.1:2200
+
+    System Package nginx
+        ✔  should be installed
+
+    Test Summary: 1 successful, 0 failures, 0 skipped
+        Finished verifying <default-bionic-nginx64-vbox> (0m0.26s).
+    ```
+    And as you can see from output above - 1 test finished successfully, no errors, no failures. And if you have color-enabled console there should be a green check mark that 
+    System pakcgae nginx - **shuld be installed**, e.g. we do have Nginx installed in our box.
+- To destroy the VM and free resources, run "
+    ```
+    bundle exec kitchen destroy
+    ```
+    Output :
+    ```
+    -----> Starting Kitchen (v2.3.3)
+    -----> Destroying <default-bionic-nginx64-vbox>...
+        ==> default: Forcing shutdown of VM...
+        ==> default: Destroying VM and associated drives...
+        Vagrant instance <default-bionic-nginx64-vbox> destroyed.
+        Finished destroying <default-bionic-nginx64-vbox> (0m4.54s).
+    -----> Kitchen is finished. (0m6.69s)
+    ```
+- All of 3 step's above could be automated via running one command : 
+    ```
+    bundle exec kitchen test
+    ```
 
 
 
@@ -115,8 +180,7 @@ Moving rbenv initialization to ~/.zshenv :
 
 # To Do
 
-- [ ] make KitcheCI tests for Nginx in Vagrant VirtualBox
-- [ ] create make file to simplify tesat for end-user
+- [ ] create make file to simplify test for end-user
 - [ ] update instructions
 
 # Done
@@ -128,4 +192,4 @@ Moving rbenv initialization to ~/.zshenv :
 - [x] create Packer box template with corresponding provision scripts
 - [x] run box in Vagrant VirtualBox
 - [x] update instructions
-
+- [x] make KitchenCI tests for Nginx in Vagrant VirtualBox
