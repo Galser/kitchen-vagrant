@@ -54,7 +54,7 @@ cd kitchen-vagrant
     
     For other distributions please refer to your system's appropriate manuals 
 
-- Install required Ruby version and choos it as default local : 
+- Install required Ruby version and choose it as default local. Run from command line : 
 ```
 rbenv install 2.3.1
 rbenv local 2.3.1
@@ -70,11 +70,11 @@ Output should like something like this :
   2.6.0
 ```
 Yours can list other versions also, due to the difference in environments, but the important part is that you should have that asterisk (*) symbol in front of the Ruby version 2.3.1 marking it as active at the current moment
-- To simplify our life and to install required Rub packages we are going to use **Ruby bundler** (See : https://bundler.io/ ). Let's install it. Execute : 
+- To simplify our life and to install required Ruby packages we are going to use **Ruby bundler** (See : https://bundler.io/ ). Let's install it. Execute : 
 ```
 gem install bundler
 ```
-- Install KitchenCI and other required **Ruby Gems**, the repository comes with the [Gemfile](Gemfile) that list all that required. ( Check ) :
+- Install KitchenCI and other required **Ruby Gems**, the repository comes with the [Gemfile](Gemfile) that list all that required. Run :
 ```
 bundle install
 ```
@@ -115,8 +115,8 @@ Moving rbenv initialization to ~/.zshenv :
 
 # To Do
 
-- [ ] update instructions
-- [ ] run Kitchen test for Nginx in Vagrant VirtualBox
+- [ ] make KitcheCI tests for Nginx in Vagrant VirtualBox
+- [ ] create make file to simplify tesat for end-user
 - [ ] update instructions
 
 # Done
@@ -127,4 +127,5 @@ Moving rbenv initialization to ~/.zshenv :
 - [x] create first local test
 - [x] create Packer box template with corresponding provision scripts
 - [x] run box in Vagrant VirtualBox
+- [x] update instructions
 
