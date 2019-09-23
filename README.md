@@ -5,9 +5,9 @@ Based on https://github.com/Galser/packer-nginx64
 
 # Purpose
 
-This repository contains Kitchen tests for [Vagrant BirtualBox with Nginx](https://github.com/Galser/packer-nginx64) that checks the fact that Nginx is indeed installed.
+This repository contains Kitchen tests for [Vagrant BirtualBox with Nginx](https://github.com/Galser/packer-nginx64) that checks the fact that Nginx package installed inside the box.
 
-For the notes on how to build basic box with Nginx please refer to [this README in the prototype repo](https://github.com/Galser/packer-nginx64/blob/master/README.md). 
+For the detailed explanation on how to build basic box with Nginx please refer to [this README in the prototype repo](https://github.com/Galser/packer-nginx64/blob/master/README.md). 
 
 # Instructions
 
@@ -20,9 +20,9 @@ git clone https://github.com/Galser/kitchen-vagrant.git
 ```
 cd kitchen-vagrant
 ```
-- Install rbenv (.ruby-version) 
-- Us HomeBrew to install rbenv
-- Make appropiate env changes :
+- In order to run our tests we need an isolated Ruby envrionment, for this purpose we are going to install and use rbenv - tool that lets you install and run multiple versions of Ruby side-by-side. 
+    - On macOS use **HomeBrew** (check [Technologies section](#technologies) for more details) to install rbenv : 
+    Make appropiate env changes :
     - macOs with BASH as the default  shell
     ```
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
@@ -59,7 +59,7 @@ cd kitchen-vagrant
 rbenv install 2.3.1
 rbenv local 2.3.1
 ```
-- Check that your setting are correct by executing :
+- Check that your settings are correct by executing :
 ```
 rbenv versions
 ```
@@ -69,7 +69,7 @@ Output should like something like this :
 * 2.3.1 (set by /Users/.../kitchen-vagrant/.ruby-version)
   2.6.0
 ```
-Yours can list other versions also, due to the difference in environments, but the important part is that you should have that asterisk (*) symbol in front of the Ruby version 2.3.1 marking it as active at the current moment
+Your output can list other versions also, due to the difference in environments, but the important part is that you should have that asterisk (*) symbol in front of the Ruby version 2.3.1 marking it as active at the current moment
 - To simplify our life and to install required Ruby packages we are going to use **Ruby bundler** (See : https://bundler.io/ ). Let's install it. Execute : 
 ```
 gem install bundler
@@ -89,14 +89,15 @@ Installing kitchen-vagrant 1.6.0
 Bundle complete! 4 Gemfile dependencies, 107 gems now installed.
 Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```
-- In order to test we need to have Vagrant Box with Ngxinx created and eveyrthing that reuiqred provisioned, to do so execute : 
+- In order to test we need to have Vagrant Box with Nginx created and everything that required provisioned. For this we need to execute : 
 ```
 make
 ```
+*Note : Generally in the modern distributions you already have make command by deafult, if it is missing, you will need to check you OS documentation on the instructions how to install make. Often it will just require simple one or two commands.*
 
 # How to test
 
-- Prepare box (runt the VM):
+- Prepare box (run the VM):
     ```
     bundle exec kitchen converge
     ```
@@ -107,12 +108,12 @@ make
         Bringing machine 'default' up with 'virtualbox' provider...
         ==> default: Importing base box 'bionic-nginx64'...
     ```
-    And in case of successful run the last 2 lines f output should be : 
+    And in case of successful run the last 2 lines of output should be : 
     ```
         Finished converging <default-bionic-nginx64> (0m0.01s).
     -----> Kitchen is finished. (0m36.66s)
     ```
-- Now to run the test : 
+- Now to run the test execute : 
     ```
     bundle exec kitchen verify
     ```
@@ -136,7 +137,7 @@ make
         Finished verifying <default-bionic-nginx64-vbox> (0m0.26s).
     ```
     And as you can see from output above - 1 test finished successfully, no errors, no failures. And if you have color-enabled console there should be a green check mark that 
-    System pakcgae nginx - **shuld be installed**, e.g. we do have Nginx installed in our box.
+    System package nginx - **should be installed**, e.g. we do have Nginx installed in our box.
 - To destroy the VM and free resources, run "
     ```
     bundle exec kitchen destroy
@@ -166,17 +167,6 @@ make
 
 - **RubyGems** is a package manager for the Ruby programming language that provides a standard format for distributing Ruby programs and libraries (in a self-contained format called a "gem"), a tool designed to easily manage the installation of gems, and a server for distributing them. More her : https://rubygems.org/
 
-
-# Notes
-
-Rbenv in some macOS versions (with ZSH) will need additional steps (credits to :  [Rod Wilhelmy](https://coderwall.com/wilhelmbot) ) : 
-Moving rbenv initialization to ~/.zshenv : 
-    ```
-    $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
-    $ echo 'eval "$(rbenv init -)"' >> ~/.zshenv
-    $ echo 'source $HOME/.zshenv' >> ~/.zshrc
-    $ exec $SHELL
-    ```
 
 # To Do
 
