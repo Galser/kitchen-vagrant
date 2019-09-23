@@ -5,3 +5,4 @@ packer_cache
 bionic-nginx64-vbox.box
 output-bionic-nginx64-vbox
 Vagrantfile
+.kitchen/

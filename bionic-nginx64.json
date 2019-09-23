@@ -51,7 +51,8 @@
         "ssh_username": "{{user `ssh_password`}}",
         "ssh_wait_timeout": "20m",
         "type": "virtualbox-iso",        
-        "virtualbox_version_file": ".vbox_version"
+        "virtualbox_version_file": ".vbox_version",
+        "post_shutdown_delay": "30s"
       }
     ],
     "provisioners": [
@@ -70,6 +71,15 @@
           "type": "vagrant",
           "keep_input_artifact": true,
           "output": "{{.BuildName}}.box"
-        }
+        },
+        {
+          "type": "shell-local",
+          "only": [
+            "{{ user `build_name` }}-vbox"
+          ],
+          "inline": [
+            "vagrant box add --name {{ user `build_name` }} --provider virtualbox {{ user `build_name` }}-vbox.box -f"
+          ]
+        }        
       ]
   }
