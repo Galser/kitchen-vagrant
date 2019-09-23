@@ -38,6 +38,22 @@ cd kitchen-vagrant
     $ echo 'source $HOME/.zshenv' >> ~/.zshrc
     $ exec $SHELL
     ```
+    - Linux (Debian flavored):
+
+    > Note: On Graphical environments, when you open a shell, sometimes ~/.bash_profile doesn't get loaded You may need to source ~/.bash_profile manually or use ~/.bashrc
+    ```
+    apt update
+    apt install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+    wget -q https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer -O- | bash
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    rbenv init
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+    source ~/.bash_profile
+    ```
+    
+    For other distributions please refer to your system's appropriate manuals 
+
 - Install required Ruby version and choos it as default local : 
 ```
 rbenv install 2.3.1
@@ -75,6 +91,8 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```
 
 
+
+
 # Technologies
 
 - **KitchenCI** - provides a test harness to execute infrastructure code on one or more platforms in isolation. FGor more details please check the productl site : [KitchenCI](https://kitchen.ci/)
@@ -97,9 +115,6 @@ Moving rbenv initialization to ~/.zshenv :
 
 # To Do
 
-- [ ] create first local test
-- [ ] create Packer box template with corresponding provisoin scripts
-- [ ] run box in Vagrant VirtualBox
 - [ ] update instructions
 - [ ] run Kitchen test for Nginx in Vagrant VirtualBox
 - [ ] update instructions
@@ -109,4 +124,7 @@ Moving rbenv initialization to ~/.zshenv :
 - [x] maker initial readme.
 - [X] install rbenv
 - [X] test rbenv - install KitchenCI
+- [x] create first local test
+- [x] create Packer box template with corresponding provision scripts
+- [x] run box in Vagrant VirtualBox
 
