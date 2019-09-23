@@ -1,0 +1,7 @@
+.ruby-version
+Gemfile.lock
+.vagrant
+packer_cache
+ngxin64-vbox.box
+output-ngxin64-vbox
+Vagrantfile
