@@ -21,24 +21,27 @@ git clone https://github.com/Galser/kitchen-vagrant.git
 cd kitchen-vagrant
 ```
 - In order to run our tests we need an isolated Ruby environment, for this purpose we are going to install and use rbenv - tool that lets you install and run multiple versions of Ruby side-by-side. 
-    - On macOS use **HomeBrew** (check [Technologies section](#technologies) for more details) to install rbenv : 
-    Make appropiate env changes :
-    - macOs with BASH as the default  shell
+    - **On macOS use HomeBrew** (check [Technologies section](#technologies) for more details) to install rbenv.  Execute from command-line :
     ```
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-    source ~/.bash_profile
-    rbenv init
-    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-    source ~/.bash_profile
+    brew install rbenv
     ```
-    - macOS with ZSH as default shell (credits to :  [Rod Wilhelmy](https://coderwall.com/wilhelmbot) ) :
-    ```
-    $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
-    $ echo 'eval "$(rbenv init -)"' >> ~/.zshenv
-    $ echo 'source $HOME/.zshenv' >> ~/.zshrc
-    $ exec $SHELL
-    ```
-    - Linux (Debian flavored):
+        To succesfully utilize rbenv you will need also to make appropiate env changes :
+        - macOs with BASH as the default  shell
+        ```
+        echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+        source ~/.bash_profile
+        rbenv init
+        echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+        source ~/.bash_profile
+        ```
+        - macOS with ZSH as default shell (credits to :  [Rod Wilhelmy](https://coderwall.com/wilhelmbot) ) :
+        ```
+        $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
+        $ echo 'eval "$(rbenv init -)"' >> ~/.zshenv
+        $ echo 'source $HOME/.zshenv' >> ~/.zshrc
+        $ exec $SHELL
+        ```
+    - **On Linux (Debian flavored)**:
 
     > Note: On Graphical environments, when you open a shell, sometimes ~/.bash_profile doesn't get loaded You may need to source ~/.bash_profile manually or use ~/.bashrc
     ```
@@ -74,7 +77,7 @@ Your output can list other versions also, due to the difference in environments,
 ```
 gem install bundler
 ```
-- Install KitchenCI and other required **Ruby Gems**, the repository comes with the [Gemfile](Gemfile) that list all that required. Run :
+- We going to use KitchenCI for our test, to install it and other required **Ruby Gems**, the repository comes with the [Gemfile](Gemfile) that list all that required. Run :
 ```
 bundle install
 ```
@@ -89,7 +92,7 @@ Installing kitchen-vagrant 1.6.0
 Bundle complete! 4 Gemfile dependencies, 107 gems now installed.
 Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```
-- In order to test we need to have Vagrant Box with Nginx created and everything that required provisioned. For this we need to execute : 
+- In order to test we need to have Vagrant Box with Nginx created and everything that required provisioned. To do it run in command line : 
 ```
 make
 ```
@@ -97,7 +100,7 @@ make
 
 # How to test
 
-- Prepare box (run the VM):
+- To prepare tests (run the VM), execute :
     ```
     bundle exec kitchen converge
     ```
@@ -171,8 +174,6 @@ This ends up the instructions, thank you.
 # To Do
 
 
-- [ ] update instructions
-
 # Done
 
 - [x] make initial readme.
@@ -184,3 +185,4 @@ This ends up the instructions, thank you.
 - [x] update instructions
 - [x] make KitchenCI tests for Nginx in Vagrant VirtualBox
 - [x] create make file to simplify test for end-user
+- [x] update instructions
