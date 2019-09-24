@@ -5,7 +5,7 @@ Based on https://github.com/Galser/packer-nginx64
 
 # Purpose
 
-This repository contains Kitchen tests for [Vagrant BirtualBox with Nginx](https://github.com/Galser/packer-nginx64) that checks the fact that Nginx package installed inside the box.
+This repository contains Kitchen tests for [Vagrant BirtualBox with Nginx](https://github.com/Galser/packer-nginx64) that checks the fact that Nginx package installed inside the box using KitchenCI. To learn more about the mentioned tools -  please check section [Technologies near the end of the README](technologies)
 
 For the detailed explanation on how to build basic box with Nginx please refer to [this README in the prototype repo](https://github.com/Galser/packer-nginx64/blob/master/README.md). 
 
@@ -25,22 +25,22 @@ cd kitchen-vagrant
     ```
     brew install rbenv
     ```
-        To succesfully utilize rbenv you will need also to make appropiate env changes :
-        - macOs with BASH as the default  shell
-        ```
-        echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-        source ~/.bash_profile
-        rbenv init
-        echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-        source ~/.bash_profile
-        ```
-        - macOS with ZSH as default shell (credits to :  [Rod Wilhelmy](https://coderwall.com/wilhelmbot) ) :
-        ```
-        $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
-        $ echo 'eval "$(rbenv init -)"' >> ~/.zshenv
-        $ echo 'source $HOME/.zshenv' >> ~/.zshrc
-        $ exec $SHELL
-        ```
+    To succesfully utilize rbenv you will need also to make appropiate env changes :
+    - macOs with BASH as the default  shell, run the commands
+    ```
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    rbenv init
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+    source ~/.bash_profile
+    ```
+    - macOS with ZSH as default shell (credits to :  [Rod Wilhelmy](https://coderwall.com/wilhelmbot) ), run the commands :
+    ```
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshenv
+    echo 'eval "$(rbenv init -)"' >> ~/.zshenv
+    echo 'source $HOME/.zshenv' >> ~/.zshrc
+    exec $SHELL
+    ```
     - **On Linux (Debian flavored)**:
 
     > Note: On Graphical environments, when you open a shell, sometimes ~/.bash_profile doesn't get loaded You may need to source ~/.bash_profile manually or use ~/.bashrc
