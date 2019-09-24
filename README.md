@@ -20,7 +20,7 @@ git clone https://github.com/Galser/kitchen-vagrant.git
 ```
 cd kitchen-vagrant
 ```
-- In order to run our tests we need an isolated Ruby envrionment, for this purpose we are going to install and use rbenv - tool that lets you install and run multiple versions of Ruby side-by-side. 
+- In order to run our tests we need an isolated Ruby environment, for this purpose we are going to install and use rbenv - tool that lets you install and run multiple versions of Ruby side-by-side. 
     - On macOS use **HomeBrew** (check [Technologies section](#technologies) for more details) to install rbenv : 
     Make appropiate env changes :
     - macOs with BASH as the default  shell
@@ -93,7 +93,7 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```
 make
 ```
-*Note : Generally in the modern distributions you already have make command by deafult, if it is missing, you will need to check you OS documentation on the instructions how to install make. Often it will just require simple one or two commands.*
+*Note : This will utilize [Makefile](Makefile) with all instructions that is prepared in this repo. Generally in the modern distributions you already have make command by default, if it is missing, you will need to check you OS documentation on the instructions how to install make. Often it will just require simple one or two commands.*
 
 # How to test
 
@@ -156,7 +156,7 @@ make
     ```
     bundle exec kitchen test
     ```
-
+This ends up the instructions, thank you. 
 
 
 # Technologies
@@ -170,12 +170,12 @@ make
 
 # To Do
 
-- [ ] create make file to simplify test for end-user
+
 - [ ] update instructions
 
 # Done
 
-- [x] maker initial readme.
+- [x] make initial readme.
 - [X] install rbenv
 - [X] test rbenv - install KitchenCI
 - [x] create first local test
@@ -183,3 +183,4 @@ make
 - [x] run box in Vagrant VirtualBox
 - [x] update instructions
 - [x] make KitchenCI tests for Nginx in Vagrant VirtualBox
+- [x] create make file to simplify test for end-user
